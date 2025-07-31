@@ -1,17 +1,16 @@
-// src/auth/auth.service.ts
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { MailService } from '../mail/mail.service'; // <-- ¡IMPORTA ESTE SERVICIO DE CORREO!
-import { CreateUserDto } from 'src/users/dto/create-user.dto'; // <-- ¡IMPORTA ESTE DTO para el tipado!
+import { MailService } from '../mail/mail.service';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
-    private mailService: MailService, // <-- ¡INYECTA MailService EN EL CONSTRUCTOR!
+    private mailService: MailService,
   ) {}
 
   async validateUser(email: string, pass: string): Promise<any> {
@@ -47,22 +46,17 @@ export class AuthService {
     throw new UnauthorizedException('Credenciales inválidas');
   }
 
-  // <--- ¡AÑADE ESTE NUEVO MÉTODO 'register' O MODIFICA EL EXISTENTE SI YA LO TIENES AQUÍ! --->
   async register(createUserDto: CreateUserDto) {
-    // La lógica de registro de usuario (crear en DB, hashear password, etc.)
-    // Debería estar en UsersService, y luego llamas a ese método.
     const user = await this.usersService.register(createUserDto);
 
-    // Envía un correo de confirmación después de un registro exitoso
     try {
       await this.mailService.sendMail(
         user.email,
-        '¡Bienvenido a Tu Banco App!', // Asunto del correo
-        `Hola ${user.name},\n\nGracias por registrarte en Tu Banco App. ¡Tu cuenta ha sido creada exitosamente!\n\nSaludos,\nEl equipo de Tu Banco App`, // Contenido en texto plano
-        `<p>Hola <strong>${user.name}</strong>,</p><p>Gracias por registrarte en Tu Banco App. ¡Tu cuenta ha sido creada exitosamente!</p><p>Saludos,<br>El equipo de Tu Banco App</p>`, // Contenido en HTML
+        '¡Bienvenido a Tu Banco App!',
+        `Hola ${user.name},\n\nGracias por registrarte en Tu Banco App. ¡Tu cuenta ha sido creada exitosamente!\n\nSaludos,\nEl equipo de Tu Banco App`,
+        `<p>Hola <strong>${user.name}</strong>,</p><p>Gracias por registrarte en Tu Banco App. ¡Tu cuenta ha sido creada exitosamente!</p><p>Saludos,<br>El equipo de Tu Banco App</p>`,
       );
     } catch (error) {
-      // Opcional: Manejar errores de envío de correo, pero no detener el registro si el correo falla
       console.error(
         'No se pudo enviar el correo de bienvenida al usuario:',
         user.email,
@@ -72,7 +66,6 @@ export class AuthService {
 
     return user;
   }
-  // <--- FIN DEL NUEVO MÉTODO 'register' --->
 
   async login(user: any) {
     const payload = { email: user.email, sub: user.id };

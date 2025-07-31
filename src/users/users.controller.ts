@@ -1,4 +1,3 @@
-// src/users/users.controller.ts
 import {
   Controller,
   Get,
@@ -24,9 +23,9 @@ export class UsersController {
     console.log(
       'DEBUG: getMyProfile - Contenido COMPLETO de req.user:',
       req.user,
-    ); // Deja este para verificar
-    const userId = req.user.id; // ¡CORREGIDO!
-    console.log('DEBUG: getMyProfile - ID extraído (userId):', userId); // Deja este para verificar
+    );
+    const userId = req.user.id;
+    console.log('DEBUG: getMyProfile - ID extraído (userId):', userId);
 
     const user = await this.usersService.findById(userId);
 
@@ -42,9 +41,9 @@ export class UsersController {
     console.log(
       'DEBUG: depositFunds - Contenido COMPLETO de req.user:',
       req.user,
-    ); // Deja este para verificar
-    const userId = req.user.id; // ¡CORREGIDO!
-    console.log('DEBUG: depositFunds - ID extraído (userId):', userId); // Deja este para verificar
+    );
+    const userId = req.user.id;
+    console.log('DEBUG: depositFunds - ID extraído (userId):', userId);
 
     const amount = depositFundsDto.amount;
     return this.usersService.depositFunds(userId, amount);

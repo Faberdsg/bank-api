@@ -1,4 +1,3 @@
-// src/app.module.ts
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
@@ -7,7 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { User } from './models/user.model';
 import { Transaction } from './models/transaction.model';
-import { MailModule } from './mail/mail.module'; // <-- ¡AÑADE ESTA LÍNEA!
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -36,7 +35,7 @@ import { MailModule } from './mail/mail.module'; // <-- ¡AÑADE ESTA LÍNEA!
     UsersModule,
     AuthModule,
     TransactionsModule,
-    MailModule, // <-- ¡Y AÑADE ESTO A TU ARRAY DE IMPORTS!
+    MailModule,
   ],
   controllers: [],
   providers: [],

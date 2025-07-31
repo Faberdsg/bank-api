@@ -1,4 +1,3 @@
-// src/transactions/transactions.controller.ts
 import {
   Controller,
   Post,
@@ -13,20 +12,20 @@ import {
 } from '@nestjs/common';
 import { TransactionsService } from './transactions.service';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard'; // RUTA CRÍTICA: Ajusta si tu guardia no está en ../auth/
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('api/transactions')
 export class TransactionsController {
   constructor(private readonly transactionsService: TransactionsService) {}
 
-  @UseGuards(JwtAuthGuard) // Protege esta ruta
+  @UseGuards(JwtAuthGuard)
   @Post()
   @HttpCode(HttpStatus.CREATED)
   async createTransaction(
-    @Request() req, // Accede al usuario autenticado via req.user
+    @Request() req,
     @Body() createTransactionDto: CreateTransactionDto,
   ) {
-    const senderId = req.user.id; // ID del usuario que está autenticado
+    const senderId = req.user.id;
     const transaction = await this.transactionsService.createTransaction(
       senderId,
       createTransactionDto,
@@ -34,11 +33,11 @@ export class TransactionsController {
     return { message: 'Transacción realizada exitosamente', transaction };
   }
 
-  @UseGuards(JwtAuthGuard) // Protege esta ruta
-  @Get() // GET a /api/transactions (sin :id)
+  @UseGuards(JwtAuthGuard)
+  @Get()
   @HttpCode(HttpStatus.OK)
   async getTransactionHistory(@Request() req) {
-    const userId = req.user.id; // ID del usuario autenticado
+    const userId = req.user.id;
     const history =
       await this.transactionsService.getTransactionHistory(userId);
     return {
@@ -47,14 +46,14 @@ export class TransactionsController {
     };
   }
 
-  @UseGuards(JwtAuthGuard) // Protege esta ruta
-  @Get(':id') // GET a /api/transactions/:id
+  @UseGuards(JwtAuthGuard)
+  @Get(':id')
   @HttpCode(HttpStatus.OK)
   async getTransactionDetails(
     @Param('id') transactionId: string,
     @Request() req,
   ) {
-    const userId = req.user.id; // ID del usuario autenticado
+    const userId = req.user.id;
     const transaction =
       await this.transactionsService.findTransactionById(transactionId);
 
@@ -62,7 +61,6 @@ export class TransactionsController {
       throw new NotFoundException('Transacción no encontrada.');
     }
 
-    // Opcional: Asegurarse de que el usuario autenticado es parte de la transacción
     if (
       transaction.sender_id !== userId &&
       transaction.receiver_id !== userId

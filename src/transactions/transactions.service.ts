@@ -1,12 +1,11 @@
-// src/transactions/transactions.service.ts
 import {
   Injectable,
   BadRequestException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Transaction } from '../models/transaction.model'; // RUTA CRÍTICA: Ajusta si tu modelo no está en ../models/
-import { User } from '../models/user.model'; // RUTA CRÍTICA: Ajusta si tu modelo no está en ../models/
+import { Transaction } from '../models/transaction.model';
+import { User } from '../models/user.model';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { Op } from 'sequelize';
 
@@ -20,13 +19,12 @@ export class TransactionsService {
   ) {}
 
   async createTransaction(
-    senderId: string, // ID del usuario que envía, viene del token JWT
+    senderId: string,
     createTransactionDto: CreateTransactionDto,
   ): Promise<Transaction> {
     const { receiverAccountNumber, amount } = createTransactionDto;
 
     return this.userModel.sequelize!.transaction(async (t) => {
-      // 1. Obtener remitente
       const sender = await this.userModel.findByPk(senderId, {
         transaction: t,
       });
@@ -34,7 +32,6 @@ export class TransactionsService {
         throw new NotFoundException('Usuario remitente no encontrado.');
       }
 
-      // 2. Obtener receptor por número de cuenta
       const receiver = await this.userModel.findOne({
         where: { account_number: receiverAccountNumber },
         transaction: t,
@@ -46,33 +43,28 @@ export class TransactionsService {
         );
       }
 
-      // 3. Validar que no se transfiere a sí mismo
       if (sender.id === receiver.id) {
         throw new BadRequestException(
           'No puedes transferir dinero a tu propia cuenta.',
         );
       }
 
-      // 4. Validar saldo insuficiente
       if (parseFloat(sender.balance.toString()) < amount) {
         throw new BadRequestException(
           'Saldo insuficiente para realizar la transacción.',
         );
       }
 
-      // 5. Actualizar saldo del remitente
       await sender.update(
         { balance: parseFloat(sender.balance.toString()) - amount },
         { transaction: t },
       );
 
-      // 6. Actualizar saldo del receptor
       await receiver.update(
         { balance: parseFloat(receiver.balance.toString()) + amount },
         { transaction: t },
       );
 
-      // 7. Crear el registro de la transacción
       const transaction = await this.transactionModel.create(
         {
           sender_id: sender.id,

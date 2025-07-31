@@ -1,4 +1,3 @@
-// src/users/users.service.ts
 import {
   Injectable,
   ConflictException,
@@ -62,7 +61,6 @@ export class UsersService {
     return newUser;
   }
 
-  // --- ¡ESTA ES LA FIRMA CRÍTICA! ASEGÚRATE DE QUE SEA ASÍ: ---
   async findByEmail(
     email: string,
     includePassword = false,
@@ -83,19 +81,16 @@ export class UsersService {
     );
     return user;
   }
-  // --- FIN FIRMA CRÍTICA ---
-
-  // src/users/users.service.ts (solo el método findById)
 
   async findById(id: string): Promise<User | null> {
-    console.log('DEBUG: findById - Buscando usuario con ID:', id); // Log del ID que se busca
+    console.log('DEBUG: findById - Buscando usuario con ID:', id);
     const user = await this.userModel.findByPk(id, {
       attributes: { exclude: ['password'] },
     });
     console.log(
       'DEBUG: findById - Resultado de findByPk:',
       user ? user.toJSON() : 'null',
-    ); // Log del resultado
+    );
     return user;
   }
 

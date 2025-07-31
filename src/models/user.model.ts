@@ -1,4 +1,3 @@
-// src/models/user.model.ts
 import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
 import { Transaction } from './transaction.model';
 
@@ -13,26 +12,25 @@ export class User extends Model {
     defaultValue: DataType.UUIDV4,
     primaryKey: true,
   })
-  declare id: string; // <--- Añadido 'declare'
+  declare id: string;
 
   @Column({
     type: DataType.STRING(100),
     allowNull: false,
   })
-  declare name: string; // <--- Añadido 'declare'
+  declare name: string;
 
   @Column({
     type: DataType.STRING(100),
     allowNull: false,
     unique: true,
   })
-  declare email: string; // <--- Añadido 'declare'
+  declare email: string;
 
   @Column({
     type: DataType.TEXT,
-    // allowNull: false, // <-- Asegúrate de que esta línea esté comentada o eliminada
   })
-  declare password: string; // <--- ¡Añadido 'declare' AQUÍ!
+  declare password: string;
 
   @Column({
     type: DataType.STRING(20),
@@ -40,14 +38,14 @@ export class User extends Model {
     unique: true,
     field: 'account_number',
   })
-  declare account_number: string; // <--- Añadido 'declare'
+  declare account_number: string;
 
   @Column({
     type: DataType.DECIMAL(10, 2),
     allowNull: false,
     defaultValue: 0.0,
   })
-  declare balance: number; // <--- Añadido 'declare'
+  declare balance: number;
 
   @Column({
     type: DataType.DATE,
@@ -62,8 +60,8 @@ export class User extends Model {
   declare updatedAt: Date;
 
   @HasMany(() => Transaction, 'sender_id')
-  declare sentTransactions: Transaction[]; // <--- Añadido 'declare'
+  declare sentTransactions: Transaction[];
 
   @HasMany(() => Transaction, 'receiver_id')
-  declare receivedTransactions: Transaction[]; // <--- Añadido 'declare'
+  declare receivedTransactions: Transaction[];
 }

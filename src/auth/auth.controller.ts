@@ -1,4 +1,3 @@
-// src/auth/auth.controller.ts
 import {
   Controller,
   Post,
@@ -9,17 +8,15 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
-import { CreateUserDto } from '../users/dto/create-user.dto'; // <-- ¡Asegúrate de que esta importación esté!
+import { CreateUserDto } from '../users/dto/create-user.dto';
 
 @Controller('api/users')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @Post('register') // <-- ¡ESTE ES EL ENDPOINT CORRECTO AHORA!
+  @Post('register')
   @HttpCode(HttpStatus.CREATED)
   async register(@Body() createUserDto: CreateUserDto) {
-    // Este método llama a AuthService.register, que a su vez llama a UsersService.register
-    // Y también se encarga de enviar el correo.
     const newUser = await this.authService.register(createUserDto);
     const { password, ...result } = newUser.toJSON();
     return result;

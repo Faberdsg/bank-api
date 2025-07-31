@@ -1,4 +1,3 @@
-// src/users/dto/create-user.dto.ts
 import {
   IsString,
   IsEmail,
@@ -20,6 +19,6 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(8) // Mínimo 8 caracteres para la contraseña
+  @MinLength(8)
   password: string;
 }
