@@ -1,0 +1,34 @@
+
+> bank-api@0.0.1 start:dev
+> nest start --watch
+
+[2J[3J[H[[90m10:05:07 p.┬ám.[0m] Starting compilation in watch mode...
+
+[[90m10:05:10 p.┬ám.[0m] Found 0 errors. Watching for file changes.
+
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:12 p.┬ám. [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:12 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSequelizeModule dependencies initialized[39m[38;5;3m +83ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:12 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPassportModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:12 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigHostModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:12 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:12 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:12 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:12 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSequelizeCoreModule dependencies initialized[39m[38;5;3m +2013ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSequelizeModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSequelizeModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuthModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTransactionsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUsersModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAppController {/api}:[39m[38;5;3m +31ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api, GET} route[39m[38;5;3m +2ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mUsersController {/api/users}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/users/register, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/users/login, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/users/me, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mTransactionsController {/api/transactions}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/transactions, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/api/transactions/history, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 27504  - [39m30/07/2025, 10:05:14 p.┬ám. [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +2ms[39m
+Nest application successfully started on port 3000!
+Usuario registrado: camila@email.com
